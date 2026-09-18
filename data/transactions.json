@@ -1,0 +1,131 @@
+[
+  {
+    "transactionId": "TXN_1001",
+    "customerId": "cust_101",
+    "customerName": "Rohan Sharma",
+    "date": "2026-09-11T10:15:00Z",
+    "day": "Mon",
+    "totalAmount": 1850,
+    "paymentMethod": "UPI",
+    "items": [
+      { "productId": "prod_01", "name": "Organic Masala Chai Blend 250g", "quantity": 2, "price": 280 },
+      { "productId": "prod_02", "name": "Pure Desi Cow Ghee 500ml", "quantity": 1, "price": 650 },
+      { "productId": "prod_04", "name": "Roasted Cashews Chilli Garlic 200g", "quantity": 2, "price": 340 }
+    ],
+    "status": "Completed"
+  },
+  {
+    "transactionId": "TXN_1002",
+    "customerId": "cust_102",
+    "customerName": "Pooja Patel",
+    "date": "2026-09-11T14:30:00Z",
+    "day": "Mon",
+    "totalAmount": 6350,
+    "paymentMethod": "UPI",
+    "items": [
+      { "productId": "prod_02", "name": "Pure Desi Cow Ghee 500ml", "quantity": 8, "price": 650 },
+      { "productId": "prod_05", "name": "Cardamom Pistachio Cookies 300g", "quantity": 6, "price": 190 }
+    ],
+    "status": "Completed"
+  },
+  {
+    "transactionId": "TXN_1003",
+    "customerId": "cust_103",
+    "customerName": "Amitabh Verma",
+    "date": "2026-09-12T11:20:00Z",
+    "day": "Tue",
+    "totalAmount": 4600,
+    "paymentMethod": "Card",
+    "items": [
+      { "productId": "prod_01", "name": "Organic Masala Chai Blend 250g", "quantity": 5, "price": 280 },
+      { "productId": "prod_04", "name": "Roasted Cashews Chilli Garlic 200g", "quantity": 5, "price": 340 },
+      { "productId": "prod_06", "name": "Cold Pressed Mustard Oil 1L", "quantity": 5, "price": 260 }
+    ],
+    "status": "Completed"
+  },
+  {
+    "transactionId": "TXN_1004",
+    "customerId": "cust_106",
+    "customerName": "Neha Gupta",
+    "date": "2026-09-12T18:45:00Z",
+    "day": "Tue",
+    "totalAmount": 4800,
+    "paymentMethod": "UPI",
+    "items": [
+      { "productId": "prod_02", "name": "Pure Desi Cow Ghee 500ml", "quantity": 6, "price": 650 },
+      { "productId": "prod_05", "name": "Cardamom Pistachio Cookies 300g", "quantity": 4, "price": 190 }
+    ],
+    "status": "Completed"
+  },
+  {
+    "transactionId": "TXN_1005",
+    "customerId": "cust_105",
+    "customerName": "Vikram Singh",
+    "date": "2026-09-13T12:10:00Z",
+    "day": "Wed",
+    "totalAmount": 7800,
+    "paymentMethod": "Cash",
+    "items": [
+      { "productId": "prod_06", "name": "Cold Pressed Mustard Oil 1L", "quantity": 15, "price": 260 },
+      { "productId": "prod_02", "name": "Pure Desi Cow Ghee 500ml", "quantity": 6, "price": 650 }
+    ],
+    "status": "Completed"
+  },
+  {
+    "transactionId": "TXN_1006",
+    "customerId": "cust_108",
+    "customerName": "Ananya Joshi",
+    "date": "2026-09-14T16:00:00Z",
+    "day": "Thu",
+    "totalAmount": 10200,
+    "paymentMethod": "UPI",
+    "items": [
+      { "productId": "prod_04", "name": "Roasted Cashews Chilli Garlic 200g", "quantity": 20, "price": 340 },
+      { "productId": "prod_01", "name": "Organic Masala Chai Blend 250g", "quantity": 12, "price": 280 }
+    ],
+    "status": "Completed"
+  },
+  {
+    "transactionId": "TXN_1007",
+    "customerId": "cust_103",
+    "customerName": "Amitabh Verma",
+    "date": "2026-09-15T17:30:00Z",
+    "day": "Fri",
+    "totalAmount": 11800,
+    "paymentMethod": "UPI",
+    "items": [
+      { "productId": "prod_02", "name": "Pure Desi Cow Ghee 500ml", "quantity": 14, "price": 650 },
+      { "productId": "prod_03", "name": "Alphonso Mango Jam 350g", "quantity": 12, "price": 210 }
+    ],
+    "status": "Completed"
+  },
+  {
+    "transactionId": "TXN_1008",
+    "customerId": "cust_104",
+    "customerName": "Sunita Rao",
+    "date": "2026-09-16T15:20:00Z",
+    "day": "Sat",
+    "totalAmount": 7200,
+    "paymentMethod": "UPI",
+    "items": [
+      { "productId": "prod_05", "name": "Cardamom Pistachio Cookies 300g", "quantity": 20, "price": 190 },
+      { "productId": "prod_04", "name": "Roasted Cashews Chilli Garlic 200g", "quantity": 10, "price": 340 }
+    ],
+    "status": "Completed"
+  },
+  {
+    "transactionId": "TXN_1009",
+    "customerId": "cust_101",
+    "customerName": "Rohan Sharma",
+    "date": "2026-09-17T11:40:00Z",
+    "day": "Sun",
+    "totalAmount": 8600,
+    "paymentMethod": "Card",
+    "items": [
+      { "productId": "prod_01", "name": "Organic Masala Chai Blend 250g", "quantity": 15, "price": 280 },
+      { "productId": "prod_02", "name": "Pure Desi Cow Ghee 500ml", "quantity": 6, "price": 650 },
+      { "productId": "prod_03", "name": "Alphonso Mango Jam 350g", "quantity": 2, "price": 210 }
+    ],
+    "status": "Completed"
+  }
+]

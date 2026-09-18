@@ -1,0 +1,74 @@
+[
+  {
+    "customerId": "cust_101",
+    "name": "Rohan Sharma",
+    "phone": "+91 98201 12345",
+    "segment": "VIP",
+    "totalSpend": 14250,
+    "visitCount": 24,
+    "lastVisit": "2026-09-16"
+  },
+  {
+    "customerId": "cust_102",
+    "name": "Pooja Patel",
+    "phone": "+91 98202 23456",
+    "segment": "Regular",
+    "totalSpend": 6800,
+    "visitCount": 11,
+    "lastVisit": "2026-09-15"
+  },
+  {
+    "customerId": "cust_103",
+    "name": "Amitabh Verma",
+    "phone": "+91 98203 34567",
+    "segment": "VIP",
+    "totalSpend": 18900,
+    "visitCount": 32,
+    "lastVisit": "2026-09-17"
+  },
+  {
+    "customerId": "cust_104",
+    "name": "Sunita Rao",
+    "phone": "+91 98204 45678",
+    "segment": "At-Risk",
+    "totalSpend": 4200,
+    "visitCount": 6,
+    "lastVisit": "2026-08-20"
+  },
+  {
+    "customerId": "cust_105",
+    "name": "Vikram Singh",
+    "phone": "+91 98205 56789",
+    "segment": "New",
+    "totalSpend": 1150,
+    "visitCount": 2,
+    "lastVisit": "2026-09-14"
+  },
+  {
+    "customerId": "cust_106",
+    "name": "Neha Gupta",
+    "phone": "+91 98206 67890",
+    "segment": "Regular",
+    "totalSpend": 8900,
+    "visitCount": 15,
+    "lastVisit": "2026-09-16"
+  },
+  {
+    "customerId": "cust_107",
+    "name": "Karan Mehta",
+    "phone": "+91 98207 78901",
+    "segment": "At-Risk",
+    "totalSpend": 3400,
+    "visitCount": 5,
+    "lastVisit": "2026-08-12"
+  },
+  {
+    "customerId": "cust_108",
+    "name": "Ananya Joshi",
+    "phone": "+91 98208 89012",
+    "segment": "VIP",
+    "totalSpend": 16500,
+    "visitCount": 28,
+    "lastVisit": "2026-09-17"
+  }
+]

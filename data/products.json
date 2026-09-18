@@ -1,0 +1,62 @@
+[
+  {
+    "productId": "prod_01",
+    "name": "Organic Masala Chai Blend 250g",
+    "category": "Beverages",
+    "price": 280,
+    "costPrice": 160,
+    "stock": 45,
+    "sku": "CHAI-250-ORG",
+    "isActive": true
+  },
+  {
+    "productId": "prod_02",
+    "name": "Pure Desi Cow Ghee 500ml",
+    "category": "Dairy",
+    "price": 650,
+    "costPrice": 480,
+    "stock": 28,
+    "sku": "GHEE-500-DESI",
+    "isActive": true
+  },
+  {
+    "productId": "prod_03",
+    "name": "Alphonso Mango Jam 350g",
+    "category": "Spreads & Sweets",
+    "price": 210,
+    "costPrice": 120,
+    "stock": 35,
+    "sku": "JAM-350-MANGO",
+    "isActive": true
+  },
+  {
+    "productId": "prod_04",
+    "name": "Roasted Cashews Chilli Garlic 200g",
+    "category": "Snacks",
+    "price": 340,
+    "costPrice": 220,
+    "stock": 18,
+    "sku": "NUT-200-CASHEW",
+    "isActive": true
+  },
+  {
+    "productId": "prod_05",
+    "name": "Cardamom Pistachio Cookies 300g",
+    "category": "Bakery",
+    "price": 190,
+    "costPrice": 95,
+    "stock": 50,
+    "sku": "BAKE-300-COOKIE",
+    "isActive": true
+  },
+  {
+    "productId": "prod_06",
+    "name": "Cold Pressed Mustard Oil 1L",
+    "category": "Oils & Staples",
+    "price": 260,
+    "costPrice": 190,
+    "stock": 40,
+    "sku": "OIL-1000-MUSTARD",
+    "isActive": true
+  }
+]
