@@ -3,7 +3,7 @@
  */
 
 const API_BASE = ""; // Vite proxy forwards /api to http://localhost:5000/api
-const DIRECT_BACKEND = "http://localhost:5000";
+const DIRECT_BACKEND = "https://seva-setu-backend-vlox.onrender.com";
 
 /**
  * Check backend health status
