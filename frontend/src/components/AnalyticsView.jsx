@@ -147,9 +147,12 @@ export default function AnalyticsView() {
           <span className="chart-legend-badge">Saturday Comparison</span>
         </div>
 
-        <div className="chart-container" style={{ height: 320 }}>
+        <div className="chart-container" style={{ height: 340 }}>
           <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={data?.hourlyTraffic || []}>
+            <AreaChart
+              data={data?.hourlyTraffic || []}
+              margin={{ top: 10, right: 20, left: 10, bottom: 40 }}
+            >
               <defs>
                 <linearGradient id="colorMonitored" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#22c55e" stopOpacity={0.4} />
@@ -173,7 +176,11 @@ export default function AnalyticsView() {
                   name === "monitored" ? "Post-Campaign Revenue" : "Baseline Pre-Campaign",
                 ]}
               />
-              <Legend />
+              <Legend
+                verticalAlign="bottom"
+                height={36}
+                wrapperStyle={{ paddingTop: "16px", fontSize: "13px" }}
+              />
               <Area
                 type="monotone"
                 dataKey="monitored"

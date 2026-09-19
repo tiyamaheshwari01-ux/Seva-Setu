@@ -25,6 +25,9 @@ import {
   RotateCcw,
   Sun,
   Moon,
+  Mic,
+  Receipt,
+  LogOut,
 } from "lucide-react";
 
 import {
@@ -50,6 +53,14 @@ import CampaignsView from "./components/CampaignsView";
 import CustomersView from "./components/CustomersView";
 import SettingsView from "./components/SettingsView";
 import NotificationsModal from "./components/NotificationsModal";
+import LoginPage from "./components/LoginPage";
+import SalesRevenueView from "./components/SalesRevenueView";
+import TaxAgentView from "./components/TaxAgentView";
+import AskSVView from "./components/AskSVView";
+import BusinessProfilePage from "./components/BusinessProfilePage";
+import DataUploadPage from "./components/DataUploadPage";
+
+
 
 const salesPeriods = {
   "7d": [
@@ -79,9 +90,26 @@ const salesPeriods = {
   ],
 };
 
+// ── Dynamic time-based greeting ────────────────────────────────────────────
+function getTimeGreeting() {
+  const hour = new Date().getHours();
+  if (hour >= 5 && hour < 12) return "Good morning";
+  if (hour >= 12 && hour < 17) return "Good afternoon";
+  return "Good evening";
+}
+
 function App() {
+  // ── Authentication + Onboarding Stage ────────────────────────────────────
+  // Stages: "login" → "profile" → "upload" → "dashboard"
+  const [appStage, setAppStage]       = useState("login");
+  const [currentUser, setCurrentUser] = useState(null);
+  const [businessData, setBusinessData] = useState(null);
+
+  // ── Financial Year State (shared across Sales, Tax Agent, Ask SV) ────────
+  const [selectedYear, setSelectedYear] = useState("FY 2025-26");
+
   // Navigation tab state
-  const [activeTab, setActiveTab] = useState("dashboard"); // 'dashboard' | 'analytics' | 'campaigns' | 'customers' | 'settings'
+  const [activeTab, setActiveTab] = useState("dashboard");
 
   // Dashboard & Metrics State
   const [metrics, setMetrics] = useState({
@@ -183,12 +211,63 @@ function App() {
     handleAnalyze(prompt);
   };
 
+  // ── Onboarding handlers ───────────────────────────────────────────────────
+  const handleLogin = (user) => {
+    setCurrentUser(user);
+    setAppStage("profile");           // → go to business profile
+  };
+
+  const handleProfileComplete = (profileData) => {
+    setBusinessData((prev) => ({ ...prev, profile: profileData }));
+    setAppStage("upload");            // → go to data upload
+  };
+
+  const handleUploadComplete = (uploadData) => {
+    setBusinessData((prev) => ({ ...prev, upload: uploadData }));
+    setAppStage("dashboard");         // → go to dashboard
+  };
+
+  const handleLogout = () => {
+    setAppStage("login");
+    setCurrentUser(null);
+    setBusinessData(null);
+    setActiveTab("dashboard");
+  };
+
+  // ── Stage Gates ───────────────────────────────────────────────────────────
+  if (appStage === "login") {
+    return <LoginPage onLogin={handleLogin} />;
+  }
+
+  if (appStage === "profile") {
+    return (
+      <BusinessProfilePage
+        onComplete={handleProfileComplete}
+      />
+    );
+  }
+
+  if (appStage === "upload") {
+    return (
+      <DataUploadPage
+        businessProfile={businessData?.profile}
+        onComplete={handleUploadComplete}
+        onBack={() => setAppStage("profile")}
+      />
+    );
+  }
+
+  // ── Dashboard (appStage === "dashboard") ──────────────────────────────────
+  // Derive personalization from business profile
+  const primaryBusiness = businessData?.profile?.profiles?.[0];
+  const businessName = primaryBusiness?.businessName || currentUser?.email?.split("@")[0] || "Merchant";
+
   return (
     <div className="app-container" onClick={() => setShowNotifications(false)}>
       {/* SIDEBAR */}
       <aside className="sidebar">
         <div className="logo-section" onClick={() => setActiveTab("dashboard")}>
-          <div className="logo-icon">S</div>
+          <div className="logo-icon">SV</div>
           <div>
             <h1>SevaSetu</h1>
             <span>AI Merchant Teammate</span>
@@ -211,6 +290,36 @@ function App() {
             <BarChart3 size={19} />
             <span>Analytics</span>
           </button>
+
+          {/* ── NEW: Sales & Revenue ── */}
+          <div className="nav-section-label">Financial</div>
+
+          <button
+            className={`nav-item ${activeTab === "salesrevenue" ? "active" : ""}`}
+            onClick={() => setActiveTab("salesrevenue")}
+          >
+            <TrendingUp size={19} />
+            <span>Sales &amp; Revenue</span>
+          </button>
+
+          <button
+            className={`nav-item ${activeTab === "taxagent" ? "active" : ""}`}
+            onClick={() => setActiveTab("taxagent")}
+          >
+            <Receipt size={19} />
+            <span>SV Tax Agent</span>
+          </button>
+
+          <button
+            className={`nav-item ${activeTab === "asksv" ? "active" : ""}`}
+            onClick={() => setActiveTab("asksv")}
+          >
+            <Mic size={19} />
+            <span>Ask SV</span>
+          </button>
+
+          {/* ── Existing tabs ── */}
+          <div className="nav-section-label">Business</div>
 
           <button
             className={`nav-item ${activeTab === "campaigns" ? "active" : ""}`}
@@ -250,14 +359,20 @@ function App() {
           </div>
 
           <div className="merchant-profile">
-            <div className="profile-avatar">M</div>
+            <div className="profile-avatar">{businessName?.[0]?.toUpperCase() || currentUser?.email?.[0]?.toUpperCase() || "M"}</div>
             <div className="profile-info">
-              <strong>Merchant</strong>
-              <span>Business Account</span>
+              <strong>{businessName || currentUser?.email || "Merchant"}</strong>
+              <span>{primaryBusiness?.businessType ? primaryBusiness.businessType.charAt(0).toUpperCase() + primaryBusiness.businessType.slice(1) + " Business" : "Business Account"}</span>
             </div>
           </div>
+
+          <button className="logout-btn" onClick={handleLogout} title="Sign out">
+            <LogOut size={15} />
+            <span>Sign Out</span>
+          </button>
         </div>
       </aside>
+
 
       {/* MAIN CONTENT AREA */}
       <main className="main-content">
@@ -265,8 +380,19 @@ function App() {
         <header className="topbar">
           <div>
             <h2>
-              {activeTab === "dashboard" && "Good evening, Merchant 👋"}
+              {activeTab === "dashboard" && (
+                <span className="topbar-greeting-row">
+                  {getTimeGreeting()}, {businessName} 👋
+                  <span className="pi-topbar-badge">
+                    <span className="pi-topbar-p">P</span>
+                    Powered by Paytm Intelligence
+                  </span>
+                </span>
+              )}
               {activeTab === "analytics" && "Store Analytics & Monitoring 📊"}
+              {activeTab === "salesrevenue" && "Sales & Revenue 📈"}
+              {activeTab === "taxagent" && "SV Tax Agent 🧾"}
+              {activeTab === "asksv" && "Ask SV — AI Assistant 🎙️"}
               {activeTab === "campaigns" && "Campaign Registry 📢"}
               {activeTab === "customers" && "Customer Directory 👥"}
               {activeTab === "settings" && "Merchant Settings & Guardrails ⚙️"}
@@ -274,6 +400,9 @@ function App() {
             <p>
               {activeTab === "dashboard" && "Here's what's happening with your business today."}
               {activeTab === "analytics" && "Closed-loop telemetry and post-broadcast sales lift."}
+              {activeTab === "salesrevenue" && "Full financial year overview — monthly breakdown, charts, and annual totals."}
+              {activeTab === "taxagent" && "AI-analyzed tax estimates and financial insights for your business."}
+              {activeTab === "asksv" && "Ask SV anything about your business data — by text or by voice."}
               {activeTab === "campaigns" && "Manage automated WhatsApp broadcasts and promotional vouchers."}
               {activeTab === "customers" && "Explore customer segments, frequency, and WhatsApp opt-in status."}
               {activeTab === "settings" && "Configure store credentials, discount boundaries, and AI governance."}
@@ -335,6 +464,22 @@ function App() {
         )}
 
         {activeTab === "settings" && <SettingsView />}
+
+        {/* ── NEW VIEW ROUTING ── */}
+        {activeTab === "salesrevenue" && (
+          <SalesRevenueView
+            selectedYear={selectedYear}
+            onYearChange={setSelectedYear}
+          />
+        )}
+
+        {activeTab === "taxagent" && (
+          <TaxAgentView selectedYear={selectedYear} />
+        )}
+
+        {activeTab === "asksv" && (
+          <AskSVView selectedYear={selectedYear} />
+        )}
 
         {/* DASHBOARD TAB VIEW */}
         {activeTab === "dashboard" && (
